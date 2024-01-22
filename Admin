@@ -1,0 +1,22 @@
+from flask_sqlalchemy import SQLAlchemy
+from flask_admin.contrib.sqla import ModelView
+from flask import Flask, render_template, url_for, redirect, request
+
+admin = Admin()
+app = Flask(__name__, static_folder='static')
+# see https://bootswatch.com/3/for available swatches
+app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
+login_manager = LoginManager(app)
+bcrypt = Bcrypt(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:\\Users\\Bongeka.Mpofu\\DB Browser for SQLite\\site.db'
+
+app.config['SECRET_KEY'] = 'this is a secret key '
+app.config['SQLALCHEMY_ECHO'] = True
+#end of new line
+db = SQLAlchemy(app)
+admin.init_app(app)
+file_path = op.join(op.dirname(__file__), 'static')
+try:
+    os.mkdir(file_path)
+except OSError:
+    pass
